@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '4.1.2'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.you'
+version = '0.0.1-SNAPSHOT'
+description = 'spring-security'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(27)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat-runtime'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+    testCompileOnly 'org.projectlombok:lombok'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+
+    // Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // Database
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Request Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // JWT / OAuth2 Resource Server
+    implementation 'org.springframework.boot:spring-boot-starter-security-oauth2-resource-server'
+
+    // PostgreSQL
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
