@@ -1,27 +1,36 @@
 
 spring:
+  profiles:
+    active: dev
   application:
     name: spring-security
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/security_lab
+    url: jdbc:postgresql://localhost:5432/security_lab1
     username: postgres
     password: "123"
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2s
 security:
   jwt:
     issuer: spring-security
     audience: security-api
     access-token-ttl: 10m
     secret-base64: ${JWT_SECRET_BASE64:zLFW7/MtTjAmvvN5ekAx+bT/Z/TzDj4D8tvv8xclFTI=}
+  refresh-token:
+    ttl: 7d
 server:
   port: 8081
 
